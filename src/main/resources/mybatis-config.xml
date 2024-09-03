@@ -3,5 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 其他配置 -->
+    <settings>
+        <!--
+            在控制台显示SQL语句, 可选择以下的日志框架:
+            STDOUT_LOGGING(Mybatis自带)、SLF4J、LOG4J、JDK_LOGGING、COMMONS_LOGGING、NO_LOGGING
+        -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
 
+    <!-- 设置别名 -->
+    <typeAliases>
+        <package name="com.omega.ssm.entity"/>
+    </typeAliases>
 </configuration>
