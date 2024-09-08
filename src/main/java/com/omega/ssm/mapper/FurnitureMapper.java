@@ -2,9 +2,11 @@ package com.omega.ssm.mapper;
 
 import com.omega.ssm.entity.Furniture;
 import com.omega.ssm.entity.FurnitureExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+// @Repository  //这里不需要注解
 public interface FurnitureMapper {
     long countByExample(FurnitureExample example);
 
