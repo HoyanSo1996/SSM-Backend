@@ -58,4 +58,13 @@ public class FurnitureController {
         }
         return new ResultInfo(500, "fail");
     }
+
+    @DeleteMapping("/remove")
+    public ResultInfo remove(Integer id) {
+        boolean flag = furnitureService.removeById(id);
+        if (flag) {
+            return new ResultInfo(200, "success");
+        }
+        return new ResultInfo(500, "fail");
+    }
 }

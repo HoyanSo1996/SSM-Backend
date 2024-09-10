@@ -19,4 +19,6 @@ public interface FurnitureService {
     Furniture getFurnitureById(Integer id);
 
     boolean updateById(Furniture furniture);
+
+    boolean removeById(Integer id);
 }

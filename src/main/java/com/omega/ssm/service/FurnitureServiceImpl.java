@@ -46,4 +46,9 @@ public class FurnitureServiceImpl implements FurnitureService {
         furniture.setUpdateTime(new Date());
         return furnitureMapper.updateByPrimaryKeySelective(furniture) > 0;
     }
+
+    @Override
+    public boolean removeById(Integer id) {
+        return furnitureMapper.deleteByPrimaryKey(id) > 0;
+    }
 }

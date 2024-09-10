@@ -58,4 +58,9 @@ public class FurnitureServiceTest {
         System.out.println(flag ? "更新数据成功." : "更新数据失败.");
     }
 
+    @Test
+    public void testRemoveById() {
+        boolean flag = furnitureService.removeById(59);
+        System.out.println(flag ? "删除数据成功." : "删除数据失败.");
+    }
 }
