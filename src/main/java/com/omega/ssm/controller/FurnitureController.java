@@ -39,4 +39,14 @@ public class FurnitureController {
             return new ResultInfo(500, "fail");
         }
     }
+
+    @GetMapping("/queryById")
+    public ResultInfo queryById(Integer id) {
+        try {
+            Furniture furniture = furnitureService.getFurnitureById(id);
+            return new ResultInfo(200, "success", furniture);
+        } catch (Exception e) {
+            return new ResultInfo(500, "fail");
+        }
+    }
 }

@@ -43,4 +43,10 @@ public class FurnitureServiceTest {
             System.out.println(furniture);
         }
     }
+
+    @Test
+    public void testGetFurnitureById() {
+        Furniture furniture = furnitureService.getFurnitureById(1);
+        System.out.println(furniture);
+    }
 }

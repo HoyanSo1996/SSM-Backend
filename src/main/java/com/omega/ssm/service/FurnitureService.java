@@ -15,4 +15,6 @@ public interface FurnitureService {
     boolean add(Furniture furniture);
 
     List<Furniture> getFurnitureList();
+
+    Furniture getFurnitureById(Integer id);
 }

@@ -34,4 +34,9 @@ public class FurnitureServiceImpl implements FurnitureService {
         // return furnitureMapper.selectByExample(null);
         return furnitureMapper.selectAll();
     }
+
+    @Override
+    public Furniture getFurnitureById(Integer id) {
+        return furnitureMapper.selectByPrimaryKey(id);
+    }
 }
