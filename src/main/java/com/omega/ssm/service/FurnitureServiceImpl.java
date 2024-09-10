@@ -5,6 +5,7 @@ import com.omega.ssm.mapper.FurnitureMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,5 +39,11 @@ public class FurnitureServiceImpl implements FurnitureService {
     @Override
     public Furniture getFurnitureById(Integer id) {
         return furnitureMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public boolean updateById(Furniture furniture) {
+        furniture.setUpdateTime(new Date());
+        return furnitureMapper.updateByPrimaryKeySelective(furniture) > 0;
     }
 }

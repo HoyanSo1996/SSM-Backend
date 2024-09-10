@@ -17,4 +17,6 @@ public interface FurnitureService {
     List<Furniture> getFurnitureList();
 
     Furniture getFurnitureById(Integer id);
+
+    boolean updateById(Furniture furniture);
 }

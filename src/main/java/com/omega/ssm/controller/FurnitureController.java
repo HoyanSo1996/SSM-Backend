@@ -49,4 +49,13 @@ public class FurnitureController {
             return new ResultInfo(500, "fail");
         }
     }
+
+    @PutMapping("/modify")
+    public ResultInfo modify(@RequestBody Furniture furniture) {
+        boolean flag = furnitureService.updateById(furniture);
+        if (flag) {
+            return new ResultInfo(200, "success");
+        }
+        return new ResultInfo(500, "fail");
+    }
 }

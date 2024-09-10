@@ -50,4 +50,22 @@ public class Furniture {
             this.updateTime = updateTime;
         }
     }
+
+    public void setImgPath(String imgPath) {
+        if (StringUtils.hasText(imgPath)) {
+            this.imgPath = imgPath;
+        }
+    }
+
+    public void setCreateTime(Date createTime) {
+        if (createTime != null) {
+            this.createTime = createTime;
+        }
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        if (updateTime != null) {
+            this.updateTime = updateTime;
+        }
+    }
 }

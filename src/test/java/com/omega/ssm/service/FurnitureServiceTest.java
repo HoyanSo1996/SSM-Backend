@@ -49,4 +49,13 @@ public class FurnitureServiceTest {
         Furniture furniture = furnitureService.getFurnitureById(1);
         System.out.println(furniture);
     }
+
+    @Test
+    public void testUpdateById() {
+        Furniture furniture = new Furniture(59, "大台灯", "山西照明", new BigDecimal("18.66"),
+                200, 500, "assets/images/product-image/default.jpg", new Date(), new Date());
+        boolean flag = furnitureService.updateById(furniture);
+        System.out.println(flag ? "更新数据成功." : "更新数据失败.");
+    }
+
 }
