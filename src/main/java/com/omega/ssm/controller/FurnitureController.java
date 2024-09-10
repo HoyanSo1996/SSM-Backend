@@ -3,12 +3,10 @@ package com.omega.ssm.controller;
 import com.omega.ssm.entity.Furniture;
 import com.omega.ssm.entity.ResultInfo;
 import com.omega.ssm.service.FurnitureService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Class FurnitureController
@@ -30,5 +28,15 @@ public class FurnitureController {
             return new ResultInfo(200, "success");
         }
         return new ResultInfo(500, "fail");
+    }
+
+    @GetMapping("/query")
+    public ResultInfo query() {
+        try {
+            List<Furniture> furnitureList = furnitureService.getFurnitureList();
+            return new ResultInfo(200, "success", furnitureList);
+        } catch (Exception e) {
+            return new ResultInfo(500, "fail");
+        }
     }
 }

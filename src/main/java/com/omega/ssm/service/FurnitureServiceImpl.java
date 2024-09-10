@@ -5,6 +5,7 @@ import com.omega.ssm.mapper.FurnitureMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Class FurnitureServiceImpl
@@ -25,5 +26,12 @@ public class FurnitureServiceImpl implements FurnitureService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public List<Furniture> getFurnitureList() {
+        // 也可以使用
+        // return furnitureMapper.selectByExample(null);
+        return furnitureMapper.selectAll();
     }
 }

@@ -8,19 +8,20 @@ import java.util.List;
 
 // @Repository  //这里不需要注解
 public interface FurnitureMapper {
-    long countByExample(FurnitureExample example);
 
-    int deleteByExample(FurnitureExample example);
+    List<Furniture> selectAll();
 
-    int deleteByPrimaryKey(Integer id);
+    List<Furniture> selectByExample(FurnitureExample example);
+
+    Furniture selectByPrimaryKey(Integer id);
 
     int insert(Furniture record);
 
     int insertSelective(Furniture record);
 
-    List<Furniture> selectByExample(FurnitureExample example);
+    int deleteByPrimaryKey(Integer id);
 
-    Furniture selectByPrimaryKey(Integer id);
+    int deleteByExample(FurnitureExample example);
 
     int updateByExampleSelective(@Param("record") Furniture record, @Param("example") FurnitureExample example);
 
@@ -29,4 +30,6 @@ public interface FurnitureMapper {
     int updateByPrimaryKeySelective(Furniture record);
 
     int updateByPrimaryKey(Furniture record);
+
+    long countByExample(FurnitureExample example);
 }

@@ -23,7 +23,7 @@ public class ResultInfo {
         this.msg = msg;
     }
 
-    public ResultInfo(Integer code, Object data, String msg) {
+    public ResultInfo(Integer code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
         this.data = data;

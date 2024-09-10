@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Class FurnitureServiceTest
@@ -33,5 +34,13 @@ public class FurnitureServiceTest {
                 200, 500, "assets/images/product-image/default.jpg", new Date(), new Date());
         boolean flag = furnitureService.add(furniture);
         System.out.println(flag ? "添加数据成功." : "添加数据失败.");
+    }
+
+    @Test
+    public void testGetFurnitureList() {
+        List<Furniture> furnitureList = furnitureService.getFurnitureList();
+        for (Furniture furniture : furnitureList) {
+            System.out.println(furniture);
+        }
     }
 }

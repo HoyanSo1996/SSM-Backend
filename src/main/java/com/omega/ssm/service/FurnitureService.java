@@ -2,6 +2,8 @@ package com.omega.ssm.service;
 
 import com.omega.ssm.entity.Furniture;
 
+import java.util.List;
+
 /**
  * Class FurnitureService
  *
@@ -11,4 +13,6 @@ import com.omega.ssm.entity.Furniture;
 public interface FurnitureService {
 
     boolean add(Furniture furniture);
+
+    List<Furniture> getFurnitureList();
 }

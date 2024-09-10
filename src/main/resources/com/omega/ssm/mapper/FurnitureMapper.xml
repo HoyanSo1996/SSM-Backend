@@ -79,6 +79,10 @@
         id, name, manufacturer, price, sales, stock, img_path, create_time, update_time
     </sql>
 
+    <select id="selectAll" resultType="com.omega.ssm.entity.Furniture">
+        select * from furniture
+    </select>
+
     <select id="selectByExample" parameterType="com.omega.ssm.entity.FurnitureExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -100,19 +104,6 @@
         from furniture
         where id = #{id,jdbcType=INTEGER}
     </select>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete
-        from furniture
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-
-    <delete id="deleteByExample" parameterType="com.omega.ssm.entity.FurnitureExample">
-        delete from furniture
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause"/>
-        </if>
-    </delete>
 
     <insert id="insert" parameterType="com.omega.ssm.entity.Furniture">
         insert into furniture (id, name, manufacturer, price, sales, stock, img_path, create_time, update_time)
@@ -183,12 +174,18 @@
         </trim>
     </insert>
 
-    <select id="countByExample" parameterType="com.omega.ssm.entity.FurnitureExample" resultType="java.lang.Long">
-        select count(*) from furniture
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from furniture
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.omega.ssm.entity.FurnitureExample">
+        delete from furniture
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
-    </select>
+    </delete>
 
     <update id="updateByExampleSelective" parameterType="map">
         update furniture
@@ -287,4 +284,11 @@
             update_time  = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="countByExample" parameterType="com.omega.ssm.entity.FurnitureExample" resultType="java.lang.Long">
+        select count(*) from furniture
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
 </mapper>
