@@ -61,8 +61,9 @@ public class FurnitureServiceTest {
 
     @Test
     public void testUpdateById() {
+        // 如果不想 update 语句对某个字段进行修改, 那就将其手动设置为 null, 跳过对它的修改.
         Furniture furniture = new Furniture(59, "大台灯", "山西照明", new BigDecimal("18.66"),
-                200, 500, "assets/images/product-image/default.jpg", new Date(), new Date());
+                200, 500, null, null, new Date());
         boolean flag = furnitureService.updateById(furniture);
         System.out.println(flag ? "更新数据成功." : "更新数据失败.");
     }
