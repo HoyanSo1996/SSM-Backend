@@ -3,10 +3,16 @@ package com.omega.ssm.controller;
 import com.omega.ssm.entity.Furniture;
 import com.omega.ssm.entity.ResultInfo;
 import com.omega.ssm.service.FurnitureService;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class FurnitureController
@@ -22,7 +28,16 @@ public class FurnitureController {
     private FurnitureService furnitureService;
 
     @PostMapping("/save")
-    public ResultInfo save(@RequestBody Furniture furniture) {
+    public ResultInfo save(@Valid @RequestBody Furniture furniture, Errors errors) {
+        System.out.println(furniture);
+        Map<String, String> map = new HashMap<>();
+        if (errors.hasErrors()) {
+            for (ObjectError error : errors.getAllErrors()) {
+                String fieldName = error.getObjectName() + "_" + ((FieldError) error).getField();
+                map.put(fieldName, error.getDefaultMessage());
+            }
+            return new ResultInfo(500, "fail", map);
+        }
         boolean flag = furnitureService.add(furniture);
         if (flag) {
             return new ResultInfo(200, "success");

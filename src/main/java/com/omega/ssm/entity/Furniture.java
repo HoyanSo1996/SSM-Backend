@@ -3,6 +3,10 @@ package com.omega.ssm.entity;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,14 +15,22 @@ public class Furniture {
 
     private Integer id;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String manufacturer;
 
+    @DecimalMin(value = "0")
+    @NotNull
     private BigDecimal price;
 
+    @Min(value = 0)
+    @NotNull
     private Integer sales;
 
+    @Min(value = 0)
+    @NotNull
     private Integer stock;
 
     private String imgPath = "assets/images/product-image/default.jpg";
