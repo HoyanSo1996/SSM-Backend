@@ -37,6 +37,11 @@ public class FurnitureServiceImpl implements FurnitureService {
     }
 
     @Override
+    public List<Furniture> pageFurniture(Integer pageNo, Integer pageSize, String name) {
+        return furnitureMapper.selectListByBeginNoAndPageSizeAndName((pageNo - 1) * pageSize, pageSize, name);
+    }
+
+    @Override
     public Furniture getFurnitureById(Integer id) {
         return furnitureMapper.selectByPrimaryKey(id);
     }

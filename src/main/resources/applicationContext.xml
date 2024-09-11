@@ -68,6 +68,7 @@
             <tx:method name="*"/>
             <!-- 表示以get揩油的所有方法, 我们认为都是只读, 不用开启事务(这是一种调优操作). -->
             <tx:method name="get*" read-only="true"/>
+            <tx:method name="page*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
 </beans>

@@ -45,6 +45,15 @@ public class FurnitureServiceTest {
     }
 
     @Test
+    public void testPageFurniture() {
+        List<Furniture> furnitureList = furnitureService.pageFurniture(1, 5, null);
+        for (Furniture furniture : furnitureList) {
+            System.out.println(furniture);
+        }
+    }
+
+
+    @Test
     public void testGetFurnitureById() {
         Furniture furniture = furnitureService.getFurnitureById(1);
         System.out.println(furniture);

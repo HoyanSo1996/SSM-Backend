@@ -16,6 +16,8 @@ public interface FurnitureService {
 
     List<Furniture> getFurnitureList();
 
+    List<Furniture> pageFurniture(Integer pageNo, Integer pageSize, String name);
+
     Furniture getFurnitureById(Integer id);
 
     boolean updateById(Furniture furniture);

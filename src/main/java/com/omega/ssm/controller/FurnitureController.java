@@ -40,6 +40,16 @@ public class FurnitureController {
         }
     }
 
+    @GetMapping("/page")
+    public ResultInfo page(Integer pageNo, Integer pageSize, String name) {
+        try {
+            List<Furniture> furnitureList = furnitureService.pageFurniture(pageNo, pageSize, name);
+            return new ResultInfo(200, "success", furnitureList);
+        } catch (Exception e) {
+            return new ResultInfo(500, "fail");
+        }
+    }
+
     @GetMapping("/queryById")
     public ResultInfo queryById(Integer id) {
         try {

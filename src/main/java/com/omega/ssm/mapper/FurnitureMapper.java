@@ -13,6 +13,10 @@ public interface FurnitureMapper {
 
     List<Furniture> selectByExample(FurnitureExample example);
 
+    List<Furniture> selectListByBeginNoAndPageSizeAndName(@Param("beginNo") Integer beginNo,
+                                                          @Param("pageSize") Integer pageSize,
+                                                          @Param("name") String name);
+
     Furniture selectByPrimaryKey(Integer id);
 
     int insert(Furniture record);
