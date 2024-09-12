@@ -27,8 +27,8 @@ public class FurnitureController {
     @Resource
     private FurnitureService furnitureService;
 
-    @PostMapping("/save")
-    public ResultInfo save(@Valid @RequestBody Furniture furniture, Errors errors) {
+    @PostMapping("/add")
+    public ResultInfo add(@Valid @RequestBody Furniture furniture, Errors errors) {
         System.out.println(furniture);
         Map<String, String> map = new HashMap<>();
         if (errors.hasErrors()) {
