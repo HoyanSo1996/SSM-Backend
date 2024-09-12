@@ -17,6 +17,8 @@ public interface FurnitureMapper {
                                                           @Param("pageSize") Integer pageSize,
                                                           @Param("name") String name);
 
+    List<Furniture> selectListByName(@Param("name") String name);
+
     Furniture selectByPrimaryKey(Integer id);
 
     int insert(Furniture record);

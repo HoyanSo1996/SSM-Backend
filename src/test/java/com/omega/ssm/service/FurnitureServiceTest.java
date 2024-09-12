@@ -1,5 +1,6 @@
 package com.omega.ssm.service;
 
+import com.github.pagehelper.PageInfo;
 import com.omega.ssm.entity.Furniture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,10 +45,18 @@ public class FurnitureServiceTest {
         }
     }
 
+    // @Test
+    // public void testPageFurniture() {
+    //     List<Furniture> furnitureList = furnitureService.pageFurniture(1, 5);
+    //     for (Furniture furniture : furnitureList) {
+    //         System.out.println(furniture);
+    //     }
+    // }
+
     @Test
-    public void testPageFurniture() {
-        List<Furniture> furnitureList = furnitureService.pageFurniture(1, 5, null);
-        for (Furniture furniture : furnitureList) {
+    public void testPageFurnitureByName() {
+        PageInfo<Furniture> pageInfo = furnitureService.pageFurnitureByName(1, 5, "台灯");
+        for (Furniture furniture : pageInfo.getList()) {
             System.out.println(furniture);
         }
     }

@@ -109,6 +109,16 @@
             #{beginNo,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
     </select>
 
+
+    <select id="selectListByName" resultType="com.omega.ssm.entity.Furniture">
+        select * from furniture
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name,jdbcType=VARCHAR}"%"
+            </if>
+        </where>
+    </select>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

@@ -1,8 +1,10 @@
 package com.omega.ssm.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.omega.ssm.entity.Furniture;
 import com.omega.ssm.entity.ResultInfo;
 import com.omega.ssm.service.FurnitureService;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -55,11 +57,36 @@ public class FurnitureController {
         }
     }
 
+    // @GetMapping("/page")
+    // public ResultInfo page(Integer pageNo, Integer pageSize, String name) {
+    //     try {
+    //         List<Furniture> furnitureList = furnitureService.pageFurniture(pageNo, pageSize, name);
+    //         return new ResultInfo(200, "success", furnitureList);
+    //     } catch (Exception e) {
+    //         return new ResultInfo(500, "fail");
+    //     }
+    // }
+
+    /**
+     * 分页查询
+     * @param pageNo 起始页码, 默认值为 1
+     * @param pageSize 一页数据量, 默认值为 5
+     * @param name 家居名
+     *
+     * @return 分页的所有信息, 包括 起始页码, 一页数据量, 总数据量 等前端导航栏所需要的全部消息
+     */
     @GetMapping("/page")
-    public ResultInfo page(Integer pageNo, Integer pageSize, String name) {
+    public ResultInfo page(@RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,
+                           @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                           @RequestParam(value = "name", defaultValue = "") String name) {
         try {
-            List<Furniture> furnitureList = furnitureService.pageFurniture(pageNo, pageSize, name);
-            return new ResultInfo(200, "success", furnitureList);
+            PageInfo<Furniture> pageInfo;
+            if (StringUtils.hasText(name)) {
+                pageInfo = furnitureService.pageFurnitureByName(pageNo, pageSize, name);
+            } else {
+                pageInfo = furnitureService.pageFurniture(pageNo, pageSize);
+            }
+            return new ResultInfo(200, "success", pageInfo);
         } catch (Exception e) {
             return new ResultInfo(500, "fail");
         }
