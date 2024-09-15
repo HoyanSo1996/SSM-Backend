@@ -7,7 +7,6 @@ import com.omega.ssm.service.FurnitureService;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,14 +30,13 @@ public class FurnitureController {
 
     @PostMapping("/add")
     public ResultInfo add(@Valid @RequestBody Furniture furniture, Errors errors) {
-        System.out.println(furniture);
         Map<String, String> map = new HashMap<>();
-        if (errors.hasErrors()) {
-            for (ObjectError error : errors.getAllErrors()) {
-                String fieldName = error.getObjectName() + "_" + ((FieldError) error).getField();
-                map.put(fieldName, error.getDefaultMessage());
-            }
-            return new ResultInfo(500, "fail", map);
+        List<FieldError> fieldErrors = errors.getFieldErrors();
+        for (FieldError fieldError : fieldErrors) {
+            map.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
+        if (!map.isEmpty()) {
+            return new ResultInfo(400, "fail", map);
         }
         boolean flag = furnitureService.add(furniture);
         if (flag) {
@@ -103,7 +101,15 @@ public class FurnitureController {
     }
 
     @PutMapping("/modify")
-    public ResultInfo modify(@RequestBody Furniture furniture) {
+    public ResultInfo modify(@Valid @RequestBody Furniture furniture, Errors errors) {
+        Map<String, String> map = new HashMap<>();
+        List<FieldError> fieldErrors = errors.getFieldErrors();
+        for (FieldError fieldError : fieldErrors) {
+            map.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
+        if (!map.isEmpty()) {
+            return new ResultInfo(400, "fail", map);
+        }
         boolean flag = furnitureService.updateById(furniture);
         if (flag) {
             return new ResultInfo(200, "success");

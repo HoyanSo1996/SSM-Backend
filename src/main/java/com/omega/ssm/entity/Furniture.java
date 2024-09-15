@@ -1,10 +1,9 @@
 package com.omega.ssm.entity;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.util.StringUtils;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -15,22 +14,22 @@ public class Furniture {
 
     private Integer id;
 
-    @NotEmpty
+    @NotEmpty(message = "家居名不能为空")
     private String name;
 
-    @NotEmpty
+    @NotEmpty(message = "制造商名不能为空")
     private String manufacturer;
 
-    @DecimalMin(value = "0")
-    @NotNull
+    @Range(min = 0, message = "最小值不能小于0")
+    @NotNull(message = "价格不能为空")
     private BigDecimal price;
 
-    @Min(value = 0)
-    @NotNull
+    @Range(min = 0, message = "最小值不能小于0")
+    @NotNull(message = "销量不能为空")
     private Integer sales;
 
-    @Min(value = 0)
-    @NotNull
+    @Range(min = 0, message = "最小值不能小于0")
+    @NotNull(message = "库存不能为空")
     private Integer stock;
 
     private String imgPath = "assets/images/product-image/default.jpg";
